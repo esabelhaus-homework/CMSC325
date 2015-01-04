@@ -19,7 +19,7 @@ import com.jme3.scene.shape.Box;
 
 /**
  * test
- * @author normenhansen
+ * @author Prof Wireman
  */
 public class Main extends SimpleApplication {
 
