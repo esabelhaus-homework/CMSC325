@@ -1,0 +1,6 @@
+<map id="animations.AdvAnimationManagerControl.setAnimation" name="animations.AdvAnimationManagerControl.setAnimation">
+<area shape="rect" id="node2" href="$classanimations_1_1_adv_animation_manager_control.html#a173799bc20908c3bfbed156467926d84" title="animations.AdvAnimationManager\lControl.controlUpdate" alt="" coords="272,5,491,47"/>
+<area shape="rect" id="node3" href="$classanimations_1_1_adv_animation_manager_control.html#a698f4bd0859bbe65fdf3c40eea4f98fd" title="animations.AdvAnimationManager\lControl.setAnimation" alt="" coords="272,71,491,112"/>
+<area shape="rect" id="node4" href="$classanimations_1_1_adv_animation_manager_control.html#af1a494925f6718d472544ce92bf5db1c" title="animations.AdvAnimationManager\lControl.onAnimCycleDone" alt="" coords="272,136,491,177"/>
+<area shape="rect" id="node5" href="$classanimations_1_1_adv_animation_manager_control.html#a47084c6a8f86902acbd3801e4d89fa01" title="animations.AdvAnimationManager\lControl.onAction" alt="" coords="272,201,491,243"/>
+</map>

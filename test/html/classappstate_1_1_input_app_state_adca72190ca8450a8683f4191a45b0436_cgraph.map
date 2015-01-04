@@ -1,0 +1,6 @@
+<map id="appstate.InputAppState.onAction" name="appstate.InputAppState.onAction">
+<area shape="rect" id="node2" href="$classcharacters_1_1_my_game_character_control.html#aabf18a6993e8cd064008b630ed81ec54" title="characters.MyGameCharacter\lControl.getCooldown" alt="" coords="229,5,425,47"/>
+<area shape="rect" id="node3" href="$classappstate_1_1_input_app_state.html#a28aa7e1f32f80dd6f4633082c3abefdb" title="appstate.InputAppState.fire" alt="" coords="238,71,417,98"/>
+<area shape="rect" id="node5" href="$classcharacters_1_1_my_game_character_control.html#aaf65bcac12aee2d4c14a4154fe60c563" title="characters.MyGameCharacter\lControl.onAction" alt="" coords="229,123,425,164"/>
+<area shape="rect" id="node4" href="$classcharacters_1_1_my_game_character_control.html#ac77e52a3bd02cb0775933c8df84d3888" title="characters.MyGameCharacter\lControl.onFire" alt="" coords="473,64,669,105"/>
+</map>
