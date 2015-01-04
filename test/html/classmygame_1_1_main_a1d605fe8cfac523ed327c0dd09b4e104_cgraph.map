@@ -1,0 +1,7 @@
+<map id="mygame.Main.simpleInitApp" name="mygame.Main.simpleInitApp">
+<area shape="rect" id="node2" href="$classphysics_1_1_physics_test_helper.html#acda5cca7e9c25eeb4653368ec9836f9b" title="physics.PhysicsTestHelper.create\lWeek4PhysicsWorld" alt="" coords="253,5,473,47"/>
+<area shape="rect" id="node3" href="$classcharacters_1_1_chase_cam_character.html#a4c1a11d0a904cbf780ee30a280b35aa6" title="characters.ChaseCamCharacter.set\lCamera" alt="" coords="248,71,477,112"/>
+<area shape="rect" id="node4" href="$classanimations_1_1_character_input_animation_app_state.html#abd19aa95ca223492be627886933f6b32" title="animations.CharacterInput\lAnimationAppState.addActionListener" alt="" coords="241,136,484,177"/>
+<area shape="rect" id="node5" href="$classanimations_1_1_character_input_animation_app_state.html#ae929c15e896f69b48a5f13a41fde4fee" title="animations.CharacterInput\lAnimationAppState.addAnalogListener" alt="" coords="240,201,485,243"/>
+<area shape="rect" id="node6" href="$classanimations_1_1_character_input_animation_app_state.html#a735ac118f422f0ebf46cc2602dd2b0ed" title="animations.CharacterInput\lAnimationAppState.setChaseCamera" alt="" coords="243,267,482,308"/>
+</map>

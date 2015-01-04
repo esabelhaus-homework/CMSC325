@@ -1,0 +1,4 @@
+<map id="characters.MyGameCharacterControl.onAnalog" name="characters.MyGameCharacterControl.onAnalog">
+<area shape="rect" id="node2" href="$classcharacters_1_1_my_game_character_control.html#aec8978f1ca866005dc2ed88382133457" title="characters.MyGameCharacter\lControl.rotate" alt="" coords="249,5,445,47"/>
+<area shape="rect" id="node3" href="$classcharacters_1_1_my_game_character_control.html#a6c8af51efc64e8d4295ba3a82088662a" title="characters.MyGameCharacter\lControl.lookUpDown" alt="" coords="249,71,445,112"/>
+</map>
