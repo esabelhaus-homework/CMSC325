@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author reden
+ * @author Prof Wireman
  */
 public class NavMeshNavigationControl extends AbstractControl {
 

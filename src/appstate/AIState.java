@@ -10,7 +10,7 @@ import com.jme3.scene.control.AbstractControl;
 
 /**
  *
- * @author reden
+ * @author Prof Wireman
  */
 public abstract class AIState extends AbstractControl{
     

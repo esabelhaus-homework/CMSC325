@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author reden
+ * @author Prof Wireman
  */
 public class SeekCoverState extends AIState{
 

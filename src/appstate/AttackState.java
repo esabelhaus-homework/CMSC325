@@ -11,7 +11,7 @@ import com.jme3.renderer.ViewPort;
 
 /**
  *
- * @author reden
+ * @author Prof Wireman
  */
 public class AttackState extends AIState{
 
