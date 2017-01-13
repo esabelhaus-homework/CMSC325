@@ -15,7 +15,7 @@ public class StrategyRandom extends Strategy
  
    */
  
-  // 0 = defect, 1 = cooperate
+  // 0 = Heads, 1 = Tails
  
   
  

@@ -21,7 +21,7 @@ public class StrategyProbabilistic extends Strategy
  
 {
  
-        // 0 = defect, 1 = cooperate
+        // 0 = heads, 1 = tails
  
         public ArrayList<Integer> opponentMoves;
  
@@ -41,7 +41,7 @@ public class StrategyProbabilistic extends Strategy
  
         public static int RELATIVE = 0, ABSOLUTE = 1;
  
-        public static int COOPERATE = 1, DEFECT = 0;
+        public static int TAILS = 1, HEADS = 0;
  
         public static int COPY = 1, OPPOSITE = 0;
  
@@ -395,13 +395,13 @@ public class StrategyProbabilistic extends Strategy
  
                 {
  
-                        if (move == COOPERATE)
+                        if (move == TAILS)
  
                         {
  
                                 // will play opposite (DEFECT)- counter with DEFECT for most points
  
-                                return DEFECT;
+                                return HEADS;
  
                         }
  
@@ -427,13 +427,13 @@ public class StrategyProbabilistic extends Strategy
  
                 {
  
-                        if (move == COOPERATE)
+                        if (move == TAILS)
  
                         {
  
                                 // will play cooperate, this is tit-for-tat so let's maximize points
  
-                                return COOPERATE;
+                                return TAILS;
  
                         }
  

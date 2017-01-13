@@ -80,6 +80,7 @@ public class CMSC325GameConcepts extends JPanel
          frame.pack();
          frame.setVisible(true);
      }
+     
     /**
      * @param args the command line arguments
      */
@@ -91,7 +92,7 @@ public class CMSC325GameConcepts extends JPanel
              });
     }
     
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
          Toolkit.getDefaultToolkit().beep();
          javax.swing.SwingUtilities.invokeLater(new Runnable() {
                  public void run() {
