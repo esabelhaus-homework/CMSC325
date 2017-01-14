@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -26,13 +27,17 @@ public class CoinFlipsGui extends JPanel implements ActionListener {
     Strategy flipper;
     String flips = "";
     String probs = "";
+    int movesLeft = 100;
 
+    /*
+     * Define base coin flip gui
+     * accepts strategy only
+     */
     CoinFlipsGui(Strategy s1) {
         // How to text
         howto = new JTextArea("Instructions");
-        howto.setText("Pick between HEADS or TAILS to guess what the coin flip will be");
+        howto.setText("Pick between HEADS or TAILS to guess what the coin flip will be. Flip until you get to 100.");
         add(howto, BorderLayout.CENTER);
-
 
         heads = new JButton("HEADS");
         heads.setPreferredSize(new Dimension(180, 30));
@@ -46,6 +51,9 @@ public class CoinFlipsGui extends JPanel implements ActionListener {
 
     }
 
+    /*
+     * override for coin flip gui which acceps probability string
+     */
     CoinFlipsGui(Strategy s1, String probabilityData) {
         this(s1);
         this.probs = probabilityData;
@@ -81,8 +89,31 @@ public class CoinFlipsGui extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
-    @Override
+    public String getFlips() {
+        return flips;
+    }
+    
+ 
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        rollTheDice();
+        
+        if (flips.length() < 100) {
+            String remains = Integer.toString(100 - flips.length());
+            infoBox(remains + " flips remaining... Keep flipping!",e.getActionCommand());
+        } 
+        
+        if (flips.length() == 100) {
+            infoBox("You've reached 100. Here are your results:\n" + flips,e.getActionCommand());
+        }
+    }
+    
+    public void infoBox(String infoMessage, String location) {
+        JOptionPane.showMessageDialog(null, infoMessage, location, JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public int rollTheDice() {
+        flipper.saveMyMove(flipper.nextMove());
+        flips += Integer.toString(flipper.getMyLastMove());
+        return 0;
     }
 }
