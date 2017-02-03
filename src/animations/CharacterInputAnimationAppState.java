@@ -63,10 +63,12 @@ public class CharacterInputAnimationAppState extends AbstractAppState implements
         MoveForward,
         MoveBackward,
         Fire,
-        Jump;
+        Jump,
+        Sidekick,
+        Wave;
     }
     
-    private String[] mappingNames = new String[]{InputMapping.Fire.name(), InputMapping.LeanFree.name(), InputAppState.InputMapping.LeanLeft.name(), InputAppState.InputMapping.LeanRight.name(),InputMapping.ToggleCover.name(), InputMapping.RotateLeft.name(), InputMapping.RotateRight.name(), InputMapping.LookUp.name(), InputMapping.LookDown.name(), InputMapping.StrafeLeft.name(),
+    private String[] mappingNames = new String[]{InputMapping.Fire.name(), InputMapping.Sidekick.name(), InputMapping.Wave.name(), InputMapping.LeanFree.name(), InputAppState.InputMapping.LeanLeft.name(), InputAppState.InputMapping.LeanRight.name(),InputMapping.ToggleCover.name(), InputMapping.RotateLeft.name(), InputMapping.RotateRight.name(), InputMapping.LookUp.name(), InputMapping.LookDown.name(), InputMapping.StrafeLeft.name(),
         InputMapping.StrafeRight.name(), InputMapping.MoveForward.name(), InputMapping.MoveBackward.name(), ChaseCamera.ChaseCamUp, ChaseCamera.ChaseCamDown, ChaseCamera.ChaseCamMoveLeft, ChaseCamera.ChaseCamMoveRight, InputMapping.Jump.name()};
     
     
@@ -88,9 +90,10 @@ public class CharacterInputAnimationAppState extends AbstractAppState implements
         inputManager.addMapping(InputMapping.MoveForward.name(), new KeyTrigger(KeyInput.KEY_W), new KeyTrigger(KeyInput.KEY_UP));
         inputManager.addMapping(InputMapping.MoveBackward.name(), new KeyTrigger(KeyInput.KEY_S), new KeyTrigger(KeyInput.KEY_DOWN));
         inputManager.addMapping(InputMapping.Jump.name(), new KeyTrigger(KeyInput.KEY_SPACE));
+        inputManager.addMapping(InputMapping.Wave.name(), new KeyTrigger(KeyInput.KEY_LSHIFT));
         inputManager.addMapping(InputMapping.Fire.name(), new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
-        inputManager.addListener(this, mappingNames);
-        
+        inputManager.addMapping(InputMapping.Sidekick.name(), new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
+        inputManager.addListener(this, mappingNames);        
     }
     
     private void assignJoysticks(){

@@ -31,7 +31,7 @@ public class AdvAnimationManagerControl extends AbstractControl implements AnimE
     private AnimChannel upperChannel;
     private AnimChannel lowerChannel;
     
-    boolean forward, backward, leftRotate, rightRotate, leftStrafe, rightStrafe, jumpStarted, inAir, firing;
+    boolean forward, backward, leftRotate, rightRotate, leftStrafe, rightStrafe, jumpStarted, inAir, firing, sidekick, wave;
     private Properties animationNames;
 
     public enum Animation{
@@ -187,8 +187,14 @@ public class AdvAnimationManagerControl extends AbstractControl implements AnimE
         } else if (binding.equals("Jump") && value) {
             jumpStarted = true;
             setAnimation(Animation.JumpStart);
+        } else if (binding.equals("Sidekick")) {
+            sidekick = true;
+            setAnimation(Animation.SideKick);
+        } else if (binding.equals("Wave")) {
+            wave = true;
+            setAnimation(Animation.Wave, Channel.Upper);
         }
-        if(jumpStarted || firing){
+        if(jumpStarted || firing || sidekick || wave){
             // Do nothing
         } else if(forward || backward || rightStrafe || leftStrafe){
             setAnimation(Animation.Walk);
