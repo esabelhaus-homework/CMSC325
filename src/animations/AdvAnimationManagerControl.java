@@ -194,9 +194,10 @@ public class AdvAnimationManagerControl extends AbstractControl implements AnimE
         if(jumpStarted || firing){
             // Do nothing
         } else if(forward || backward || rightStrafe || leftStrafe){
-            setAnimation(Animation.Walk);
+            setAnimation(Animation.Walk, Channel.All);
             System.out.println("Setting Animation to Walk...");
-            setAnimation(Animation.Idle);
+        } else {
+            setAnimation(Animation.Idle);            
         }
         
     }

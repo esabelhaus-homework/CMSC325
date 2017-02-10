@@ -94,7 +94,7 @@ public class Main extends SimpleApplication {
         
         sinbad.setLocalScale(1.50f);
         
-        //Node mainPlayer = createPlayerCharacter();
+        Node mainPlayer = createPlayerCharacter();
         AICharacterControl physicsCharacter = new AICharacterControl(0.3f, 2.5f, 8f);
         
         sinbad.addControl(physicsCharacter);
@@ -116,7 +116,7 @@ public class Main extends SimpleApplication {
         rootNode.attachChild(camNode);
         List<Spatial> targets = new ArrayList<Spatial>();
         targets.add(camNode);
-        //targets.add(mainPlayer);
+        targets.add(mainPlayer);
         
         //jaime.getControl(AIControl.class).setState(AIControl.State.Follow);
         sinbad.getControl(AIControl.class).setTargetList(targets);
@@ -158,15 +158,15 @@ public class Main extends SimpleApplication {
         appState.addAnalogListener(charControl);
         //appState.setChaseCamera(chaseCam);
         stateManager.attach(appState);
-        rootNode.attachChild(playerNode);
         inputManager.setCursorVisible(false);
         
         animControl = new AdvAnimationManagerControl("animations/resources/animations-jaime.properties");
         playerNode.addControl(animControl);
-        
         appState.addActionListener(animControl);
         appState.addAnalogListener(animControl);
         
+        rootNode.attachChild(playerNode);
+
         return playerNode;
     }
 

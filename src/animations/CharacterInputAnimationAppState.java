@@ -90,7 +90,6 @@ public class CharacterInputAnimationAppState extends AbstractAppState implements
         inputManager.addMapping(InputMapping.Jump.name(), new KeyTrigger(KeyInput.KEY_SPACE));
         inputManager.addMapping(InputMapping.Fire.name(), new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         inputManager.addListener(this, mappingNames);
-        
     }
     
     private void assignJoysticks(){
@@ -113,8 +112,6 @@ public class CharacterInputAnimationAppState extends AbstractAppState implements
                     button.assignButton("Fire");
                 }
             }
-
-            
         }
     }
 
