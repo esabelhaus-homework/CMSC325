@@ -45,7 +45,6 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
         super(radius, height, mass);
     }
     
-    @Override
     public void update(float tpf){
         super.update(tpf);
         if(!forward && !backward && !leftStrafe && !rightStrafe && !inCover){
@@ -55,6 +54,8 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
             modelForwardDir = spatial.getWorldRotation().mult(Vector3f.UNIT_Z);
             modelLeftDir = spatial.getWorldRotation().mult(Vector3f.UNIT_X);
         }
+        //Vector3f modelForwardDir = spatial.getWorldRotation().mult(Vector3f.UNIT_Z);
+
         
         walkDirection.set(0, 0, 0);
         if (forward) {
@@ -74,10 +75,12 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
                     walkDirection.set(Vector3f.ZERO);
                 }
             } else {
+                //System.out.println("Walking in walkDirection at: " + moveSpeed);
                 viewDirection.set(walkDirection);
             }
         }
         
+        System.out.println("Walking Dir:" + walkDirection);
         setViewDirection(viewDirection.normalizeLocal());
         setWalkDirection(walkDirection);
     }

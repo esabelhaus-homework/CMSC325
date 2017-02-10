@@ -90,11 +90,15 @@ public class Main extends SimpleApplication {
     
     private void createAICharacter() {
         // Load model, attach to character node
-       Node sinbad = (Node) assetManager.loadModel("Models/Jaime/Jaime.j3o");
+        Node sinbad = (Node) assetManager.loadModel("Models/Jaime/Jaime.j3o");
         
         sinbad.setLocalScale(1.50f);
         
         Node mainPlayer = createPlayerCharacter();
+        
+        rootNode.attachChild(mainPlayer);
+        System.out.println("Player local translation: " + mainPlayer.getLocalTranslation());
+        System.out.println("Player world translation: " + mainPlayer.getWorldTranslation());
         AICharacterControl physicsCharacter = new AICharacterControl(0.3f, 2.5f, 8f);
         
         sinbad.addControl(physicsCharacter);
@@ -103,7 +107,7 @@ public class Main extends SimpleApplication {
         sinbad.addControl(new AIControl());
         sinbad.addControl(new AIAnimationControl());
         
-        CameraNode camNode = new CameraNode("CamNode", cam);
+        camNode = new CameraNode("CamNode", cam);
         camNode.setControlDir(CameraControl.ControlDirection.CameraToSpatial);
         
         Geometry g = new Geometry("", new Box(1,1,1));
@@ -115,7 +119,7 @@ public class Main extends SimpleApplication {
         getFlyByCamera().setMoveSpeed(25);
         rootNode.attachChild(camNode);
         List<Spatial> targets = new ArrayList<Spatial>();
-        targets.add(camNode);
+        //targets.add(camNode);
         targets.add(mainPlayer);
         
         //jaime.getControl(AIControl.class).setState(AIControl.State.Follow);
@@ -131,8 +135,8 @@ public class Main extends SimpleApplication {
         Node playerNode = (Node) assetManager.loadModel("Models/Jaime/Jaime.j3o");
         playerNode.setLocalTranslation(12f, 0, 8f);
         ChaseCamCharacter charControl = new ChaseCamCharacter(-4.5f, 2.5f, 0f);
-        //MyGameCharacterControl charControl = new MyGameCharacterControl(0,-20f,0);
-        
+        //MyGameCharacterControl charControl = new MyGameCharacterControl(0,-20f,0);        
+
         charControl.setGravity(normalGravity);
         charControl.setCamera(cam);
         
@@ -151,13 +155,15 @@ public class Main extends SimpleApplication {
 //        chaseCam.setToggleRotationTrigger();
 
         playerNode.addControl(charControl);
-        bulletAppState.getPhysicsSpace().add(charControl);
+        getPhysicsSpace().add(charControl);
+        getPhysicsSpace().addAll(playerNode);
 
         CharacterInputAnimationAppState appState = new CharacterInputAnimationAppState();
         appState.addActionListener(charControl);
         appState.addAnalogListener(charControl);
         //appState.setChaseCamera(chaseCam);
         stateManager.attach(appState);
+        rootNode.attachChild(playerNode);
         inputManager.setCursorVisible(false);
         
         animControl = new AdvAnimationManagerControl("animations/resources/animations-jaime.properties");
@@ -165,8 +171,6 @@ public class Main extends SimpleApplication {
         appState.addActionListener(animControl);
         appState.addAnalogListener(animControl);
         
-        rootNode.attachChild(playerNode);
-
         return playerNode;
     }
 

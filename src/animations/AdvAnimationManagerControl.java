@@ -9,6 +9,7 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
 import com.jme3.animation.AnimEventListener;
 import com.jme3.animation.LoopMode;
+import com.jme3.bullet.control.BetterCharacterControl;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.math.Vector3f;
@@ -31,8 +32,6 @@ public class AdvAnimationManagerControl extends AbstractControl implements AnimE
     private AnimControl animControl;
     private AnimChannel upperChannel;
     private AnimChannel lowerChannel;
-    private Vector3f modelForwardDir;
-    private Vector3f modelLeftDir;
     boolean forward, backward, leftRotate, rightRotate, leftStrafe, rightStrafe, jumpStarted, inAir, firing;
     private Properties animationNames;
 
@@ -90,6 +89,7 @@ public class AdvAnimationManagerControl extends AbstractControl implements AnimE
     protected void controlUpdate(float tpf) {
         if(inAir){
             MyGameCharacterControl charControl =spatial.getControl(MyGameCharacterControl.class);
+            //BetterCharacterControl charControl =spatial.getControl(BetterCharacterControl.class);
             if(charControl != null && charControl.isOnGround()){
 //                setAnimation(Animation.JumpEnd);
                 setAnimation(Animation.Idle);
@@ -181,7 +181,7 @@ public class AdvAnimationManagerControl extends AbstractControl implements AnimE
             rightStrafe = value;
         } else if (binding.equals("MoveForward")) {
             forward = value;
-            System.out.println("Moving Forward...");
+            //System.out.println("Moving Forward...");
         } else if (binding.equals("MoveBackward")) {
             backward = value;
         }else if (binding.equals("Fire") && value) {
@@ -194,8 +194,8 @@ public class AdvAnimationManagerControl extends AbstractControl implements AnimE
         if(jumpStarted || firing){
             // Do nothing
         } else if(forward || backward || rightStrafe || leftStrafe){
-            setAnimation(Animation.Walk, Channel.All);
-            System.out.println("Setting Animation to Walk...");
+            setAnimation(Animation.Walk);
+            //System.out.println("Setting Animation to Walk...");
         } else {
             setAnimation(Animation.Idle);            
         }
