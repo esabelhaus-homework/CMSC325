@@ -22,6 +22,8 @@ import com.jme3.scene.control.CameraControl;
 public class MyGameCharacterControl extends BetterCharacterControl 
         implements ActionListener, AnalogListener {
     
+    private Vector3f modelForwardDir;
+    private Vector3f modelLeftDir;
     boolean forward = false, backward = false, leftRotate = false, rightRotate = false, leftStrafe = false, rightStrafe = false;
     protected Node head = new Node("Head");
     private float yaw = 0;
@@ -75,8 +77,9 @@ public class MyGameCharacterControl extends BetterCharacterControl
     
     public void update(float tpf) {
         super.update(tpf);
-        Vector3f modelForwardDir = spatial.getWorldRotation().mult(Vector3f.UNIT_Z);
-        Vector3f modelLeftDir = spatial.getWorldRotation().mult(Vector3f.UNIT_X);
+        modelForwardDir = spatial.getWorldRotation().mult(Vector3f.UNIT_Z);
+        modelLeftDir = spatial.getWorldRotation().mult(Vector3f.UNIT_X);
+        
         walkDirection.set(0,0,0);
         
         if(cooldown > 0){

@@ -23,7 +23,7 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
-//import chapter02.control.ChaseCamCharacter;
+import characters.ChaseCamCharacter;
 import characters.MyGameCharacterControl;
 import java.util.ArrayList;
 import java.util.List;
@@ -134,6 +134,7 @@ public class CharacterInputAnimationAppState extends AbstractAppState implements
 
     public void onAction(String name, boolean isPressed, float tpf) {
         for(ActionListener actionListener: actionListeners){
+            System.out.println("Action: " + name + " on " + actionListener.toString() );
             actionListener.onAction(name, isPressed, tpf);
         }
     }

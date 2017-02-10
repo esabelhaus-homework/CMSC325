@@ -96,7 +96,6 @@ public class Main extends SimpleApplication {
         
         Node mainPlayer = createPlayerCharacter();
         
-        rootNode.attachChild(mainPlayer);
         System.out.println("Player local translation: " + mainPlayer.getLocalTranslation());
         System.out.println("Player world translation: " + mainPlayer.getWorldTranslation());
         AICharacterControl physicsCharacter = new AICharacterControl(0.3f, 2.5f, 8f);
@@ -118,9 +117,12 @@ public class Main extends SimpleApplication {
         camNode.addControl(new SoundEmitterControl());
         getFlyByCamera().setMoveSpeed(25);
         rootNode.attachChild(camNode);
+        rootNode.attachChild(mainPlayer);
         List<Spatial> targets = new ArrayList<Spatial>();
-        //targets.add(camNode);
+        targets.add(camNode);
         targets.add(mainPlayer);
+        
+        mainPlayer.addControl(new SoundEmitterControl());
         
         //jaime.getControl(AIControl.class).setState(AIControl.State.Follow);
         sinbad.getControl(AIControl.class).setTargetList(targets);
@@ -169,6 +171,7 @@ public class Main extends SimpleApplication {
         animControl = new AdvAnimationManagerControl("animations/resources/animations-jaime.properties");
         playerNode.addControl(animControl);
         appState.addActionListener(animControl);
+        
         appState.addAnalogListener(animControl);
         
         return playerNode;

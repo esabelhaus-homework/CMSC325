@@ -53,7 +53,7 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
         } else if(inCover){
             modelForwardDir = spatial.getWorldRotation().mult(Vector3f.UNIT_Z);
             modelLeftDir = spatial.getWorldRotation().mult(Vector3f.UNIT_X);
-        }
+        } 
         //Vector3f modelForwardDir = spatial.getWorldRotation().mult(Vector3f.UNIT_Z);
 
         
@@ -80,9 +80,9 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
             }
         }
         
-        System.out.println("Walking Dir:" + walkDirection);
+        //System.out.println("Walking Dir:" + walkDirection);
         setViewDirection(viewDirection.normalizeLocal());
-        setWalkDirection(walkDirection);
+        setWalkDirection(walkDirection.normalizeLocal());
     }
     
     @Override
@@ -101,22 +101,22 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
    
     @Override
     public void onAction(String binding, boolean value, float tpf) {
-        if(binding.equals("ToggleCover") && value){
-            if(inCover){
-                inCover = false;
-            } else {
-                checkCover(spatial.getWorldTranslation());
-                if(hasLowCover || hasHighCover){
-                    inCover = true;
-                }
-            }
-        } else if(inCover){
-            if (binding.equals("StrafeLeft")) {
-                leftStrafe = value;
-            } else if (binding.equals("StrafeRight")) {
-                rightStrafe = value;
-            }
-        } else {
+//        if(binding.equals("ToggleCover") && value){
+//            if(inCover){
+//                inCover = false;
+//            } else {
+//                checkCover(spatial.getWorldTranslation());
+//                if(hasLowCover || hasHighCover){
+//                    inCover = true;
+//                }
+//            }
+//        } else if(inCover){
+//            if (binding.equals("StrafeLeft")) {
+//                leftStrafe = value;
+//            } else if (binding.equals("StrafeRight")) {
+//                rightStrafe = value;
+//            }
+//        } else {
             if (binding.equals("StrafeLeft")) {
                 leftStrafe = value;
             } else if (binding.equals("StrafeRight")) {
@@ -128,7 +128,7 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
             } else if (binding.equals("Jump")) {
                 jump();
             }
-        }
+//        }
     }
      
     public void setStructures(Node structures){

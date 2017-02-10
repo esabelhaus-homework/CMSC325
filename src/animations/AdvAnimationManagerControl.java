@@ -85,6 +85,7 @@ public class AdvAnimationManagerControl extends AbstractControl implements AnimE
         }
         return key;
     }
+    
     @Override
     protected void controlUpdate(float tpf) {
         if(inAir){

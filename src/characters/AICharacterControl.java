@@ -53,6 +53,7 @@ public class AICharacterControl extends BetterCharacterControl
               
         if (forward) {
             walkDirection.addLocal(modelForwardDir.mult(moveSpeed));
+            System.out.println("AI Walking Dir:" + walkDirection);
         } else if (backward) {
             walkDirection.addLocal(modelForwardDir.negate().multLocal(moveSpeed));
         }

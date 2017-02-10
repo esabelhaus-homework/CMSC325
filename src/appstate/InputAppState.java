@@ -39,7 +39,6 @@ public class InputAppState extends AbstractAppState implements AnalogListener, A
     List<Geometry> targets = new ArrayList<Geometry>();
     
     public enum InputMapping{
-        
         LeanLeft,
         LeanRight,
         LeanFree,
@@ -74,13 +73,12 @@ public class InputAppState extends AbstractAppState implements AnalogListener, A
         inputManager.addMapping(InputAppState.InputMapping.RotateRight.name(), new MouseAxisTrigger(MouseInput.AXIS_X, false));
         inputManager.addMapping(InputAppState.InputMapping.LookUp.name(), new MouseAxisTrigger(MouseInput.AXIS_Y, false));
         inputManager.addMapping(InputAppState.InputMapping.LookDown.name(), new MouseAxisTrigger(MouseInput.AXIS_Y, true));
-        inputManager.addMapping(InputAppState.InputMapping.StrafeLeft.name(), new KeyTrigger(KeyInput.KEY_H), new KeyTrigger(KeyInput.KEY_LEFT));
-        inputManager.addMapping(InputAppState.InputMapping.StrafeRight.name(), new KeyTrigger(KeyInput.KEY_K), new KeyTrigger(KeyInput.KEY_RIGHT));
-        inputManager.addMapping(InputAppState.InputMapping.MoveForward.name(), new KeyTrigger(KeyInput.KEY_U), new KeyTrigger(KeyInput.KEY_UP));
-        inputManager.addMapping(InputAppState.InputMapping.MoveBackward.name(), new KeyTrigger(KeyInput.KEY_J), new KeyTrigger(KeyInput.KEY_DOWN));
-        inputManager.addListener(this, mappingNames);
-        
+        inputManager.addMapping(InputAppState.InputMapping.StrafeLeft.name(), new KeyTrigger(KeyInput.KEY_J), new KeyTrigger(KeyInput.KEY_LEFT));
+        inputManager.addMapping(InputAppState.InputMapping.StrafeRight.name(), new KeyTrigger(KeyInput.KEY_L), new KeyTrigger(KeyInput.KEY_RIGHT));
+        inputManager.addMapping(InputAppState.InputMapping.MoveForward.name(), new KeyTrigger(KeyInput.KEY_I), new KeyTrigger(KeyInput.KEY_UP));
+        inputManager.addMapping(InputAppState.InputMapping.MoveBackward.name(), new KeyTrigger(KeyInput.KEY_K), new KeyTrigger(KeyInput.KEY_DOWN));
         inputManager.addMapping(InputAppState.InputMapping.Fire.name(), new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+        inputManager.addListener(this, mappingNames);        
     }
     /**
     * 
@@ -137,7 +135,6 @@ public class InputAppState extends AbstractAppState implements AnalogListener, A
                    fire();
                }
            } else {
-           
                character.onAction(name, isPressed, tpf);
            }
         }
