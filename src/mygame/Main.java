@@ -1,27 +1,19 @@
 package mygame;
 
 import AI.AIControl;
-import AI.AIControl2;
 import AI.SoundEmitterControl;
 import physics.PhysicsTestHelper;
 import animations.AdvAnimationManagerControl;
-import appstate.InputAppState;
 import animations.AIAnimationControl;
 import animations.CharacterInputAnimationAppState;
-import characters.MyGameCharacterControl;
 import characters.AICharacterControl;
 import characters.ChaseCamCharacter;
-import com.jme3.app.FlyCamAppState;
 import com.jme3.app.SimpleApplication;
 import com.jme3.bounding.BoundingSphere;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.PhysicsSpace;
-import com.jme3.bullet.control.BetterCharacterControl;
-import com.jme3.input.ChaseCamera;
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.RenderManager;
 import com.jme3.scene.CameraNode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
@@ -66,21 +58,8 @@ public class Main extends SimpleApplication {
 
         // init a physics test scene
         PhysicsTestHelper.createWeek5PhysicsWorld(rootNode, assetManager, bulletAppState.getPhysicsSpace());
-        //PhysicsTestHelper.createBallShooter(this, rootNode, bulletAppState.getPhysicsSpace());
 
-        //createPlayerCharacter();
         createAICharacter();
-        
-
-        
-//        characterNode.attachChild(model);
-
-        // Add character node to the rootNode
-//        rootNode.attachChild(characterNode);
-        
-        
-        
-        
 
     }
     
@@ -96,8 +75,6 @@ public class Main extends SimpleApplication {
         
         Node mainPlayer = createPlayerCharacter();
         
-        System.out.println("Player local translation: " + mainPlayer.getLocalTranslation());
-        System.out.println("Player world translation: " + mainPlayer.getWorldTranslation());
         AICharacterControl physicsCharacter = new AICharacterControl(0.3f, 2.5f, 8f);
         
         sinbad.addControl(physicsCharacter);
@@ -124,38 +101,21 @@ public class Main extends SimpleApplication {
         
         mainPlayer.addControl(new SoundEmitterControl());
         
-        //jaime.getControl(AIControl.class).setState(AIControl.State.Follow);
         sinbad.getControl(AIControl.class).setTargetList(targets);
-        //jaime.getControl(AIControl.class).setTarget(camNode);
     }
     
     private Node createPlayerCharacter() {
-        
+        // create controlled player
         stateManager.attach(bulletAppState);
-        //stateManager.detach(stateManager.getState(FlyCamAppState.class));
         
         Node playerNode = (Node) assetManager.loadModel("Models/Jaime/Jaime.j3o");
         playerNode.setLocalTranslation(12f, 0, 8f);
-        ChaseCamCharacter charControl = new ChaseCamCharacter(-4.5f, 2.5f, 0f);
-        //MyGameCharacterControl charControl = new MyGameCharacterControl(0,-20f,0);        
+
+        ChaseCamCharacter charControl = new ChaseCamCharacter(0.1f, 2.5f, 8f);
 
         charControl.setGravity(normalGravity);
         charControl.setCamera(cam);
         
-//        ChaseCamera chaseCam = new ChaseCamera(cam, playerNode, inputManager);
-//        chaseCam.setDragToRotate(false);
-//        chaseCam.setSmoothMotion(true);
-//        chaseCam.setLookAtOffset(new Vector3f(0, 1f, 0));
-//        chaseCam.setDefaultDistance(7f);
-//        chaseCam.setMaxDistance(8f);
-//        chaseCam.setMinDistance(6f);
-//       
-//        chaseCam.setTrailingSensitivity(50);
-//        chaseCam.setChasingSensitivity(10);
-//        chaseCam.setRotationSpeed(10);
-//        chaseCam.setDragToRotate(true);
-//        chaseCam.setToggleRotationTrigger();
-
         playerNode.addControl(charControl);
         getPhysicsSpace().add(charControl);
         getPhysicsSpace().addAll(playerNode);
@@ -163,7 +123,6 @@ public class Main extends SimpleApplication {
         CharacterInputAnimationAppState appState = new CharacterInputAnimationAppState();
         appState.addActionListener(charControl);
         appState.addAnalogListener(charControl);
-        //appState.setChaseCamera(chaseCam);
         stateManager.attach(appState);
         rootNode.attachChild(playerNode);
         inputManager.setCursorVisible(false);
@@ -176,14 +135,4 @@ public class Main extends SimpleApplication {
         
         return playerNode;
     }
-
-//    @Override
-//    public void simpleUpdate(float tpf) {
-//        //TODO: add update code
-//    }
-//
-//    @Override
-//    public void simpleRender(RenderManager rm) {
-//        //TODO: add render code
-//    }
 }

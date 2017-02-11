@@ -4,14 +4,9 @@
  */
 package animations;
 
-//import InputAppState.*;
-//Import appstate.InputAppState;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.bounding.BoundingVolume;
-import com.jme3.collision.Collidable;
-import com.jme3.collision.CollisionResults;
 import com.jme3.input.ChaseCamera;
 import com.jme3.input.InputManager;
 import com.jme3.input.Joystick;
@@ -23,8 +18,6 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
-import characters.ChaseCamCharacter;
-import characters.MyGameCharacterControl;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,7 +127,6 @@ public class CharacterInputAnimationAppState extends AbstractAppState implements
 
     public void onAction(String name, boolean isPressed, float tpf) {
         for(ActionListener actionListener: actionListeners){
-            System.out.println("Action: " + name + " on " + actionListener.toString() );
             actionListener.onAction(name, isPressed, tpf);
         }
     }

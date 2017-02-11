@@ -9,10 +9,8 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
 import com.jme3.animation.AnimEventListener;
 import com.jme3.animation.LoopMode;
-import com.jme3.bullet.control.BetterCharacterControl;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
-import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
@@ -97,7 +95,7 @@ public class AdvAnimationManagerControl extends AbstractControl implements AnimE
                 jumpStarted = false;
                 inAir = false;
             }
-        }
+        } 
     }
     
     @Override

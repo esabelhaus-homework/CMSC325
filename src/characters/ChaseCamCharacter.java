@@ -4,18 +4,12 @@
  */
 package characters;
 
-import com.jme3.collision.Collidable;
 import com.jme3.collision.CollisionResults;
-import com.jme3.math.FastMath;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Ray;
 import com.jme3.math.Triangle;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
-import com.jme3.scene.CameraNode;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
-import com.jme3.scene.control.CameraControl;
 
 /**
  *
@@ -26,11 +20,13 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
     private Camera cam;
     private Vector3f modelForwardDir;
     private Vector3f modelLeftDir;
+    protected Node head = new Node("Head");
+
     
     /**
      * Cover
      */
-    private float playerWidth = 0.1f;
+    private float playerWidth = 0.3f;
     private boolean inCover;
     private boolean hasLowCover;
     private boolean hasHighCover;
@@ -43,8 +39,10 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
     
     public ChaseCamCharacter(float radius, float height, float mass) {
         super(radius, height, mass);
+        head.setLocalTranslation(0, 1.8f, 0);
     }
     
+    @Override
     public void update(float tpf){
         super.update(tpf);
         if(!forward && !backward && !leftStrafe && !rightStrafe && !inCover){
@@ -54,7 +52,6 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
             modelForwardDir = spatial.getWorldRotation().mult(Vector3f.UNIT_Z);
             modelLeftDir = spatial.getWorldRotation().mult(Vector3f.UNIT_X);
         } 
-        //Vector3f modelForwardDir = spatial.getWorldRotation().mult(Vector3f.UNIT_Z);
 
         
         walkDirection.set(0, 0, 0);
@@ -75,24 +72,17 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
                     walkDirection.set(Vector3f.ZERO);
                 }
             } else {
-                //System.out.println("Walking in walkDirection at: " + moveSpeed);
                 viewDirection.set(walkDirection);
             }
         }
         
-        //System.out.println("Walking Dir:" + walkDirection);
-        setViewDirection(viewDirection.normalizeLocal());
-        setWalkDirection(walkDirection.normalizeLocal());
+        setViewDirection(viewDirection);
+        setWalkDirection(walkDirection);
     }
     
     @Override
     public void setCamera(Camera cam){
         this.cam = cam;
-//        camNode = new CameraNode("CamNode", cam);
-//        camNode.setControlDir(CameraControl.ControlDirection.SpatialToCamera);
-//        head.attachChild(camNode);
-//        camNode.setLocalTranslation(new Vector3f(0, 5, -5));
-//        camNode.lookAt(head.getLocalTranslation(), Vector3f.UNIT_Y);
     }
     
     /**
@@ -101,22 +91,22 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
    
     @Override
     public void onAction(String binding, boolean value, float tpf) {
-//        if(binding.equals("ToggleCover") && value){
-//            if(inCover){
-//                inCover = false;
-//            } else {
-//                checkCover(spatial.getWorldTranslation());
-//                if(hasLowCover || hasHighCover){
-//                    inCover = true;
-//                }
-//            }
-//        } else if(inCover){
-//            if (binding.equals("StrafeLeft")) {
-//                leftStrafe = value;
-//            } else if (binding.equals("StrafeRight")) {
-//                rightStrafe = value;
-//            }
-//        } else {
+        if(binding.equals("ToggleCover") && value){
+            if(inCover){
+                inCover = false;
+            } else {
+                checkCover(spatial.getWorldTranslation());
+                if(hasLowCover || hasHighCover){
+                    inCover = true;
+                }
+            }
+        } else if(inCover){
+            if (binding.equals("StrafeLeft")) {
+                leftStrafe = value;
+            } else if (binding.equals("StrafeRight")) {
+                rightStrafe = value;
+            }
+        } else {
             if (binding.equals("StrafeLeft")) {
                 leftStrafe = value;
             } else if (binding.equals("StrafeRight")) {
@@ -128,7 +118,7 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
             } else if (binding.equals("Jump")) {
                 jump();
             }
-//        }
+        }
     }
      
     public void setStructures(Node structures){
@@ -174,8 +164,7 @@ public class ChaseCamCharacter extends MyGameCharacterControl{
 
             Triangle t = new Triangle();
             collRes.getClosestCollision().getTriangle(t);
-//            t.calculateNormal();
-            viewDirection.set(t.getNormal().negate());//alignWithCover(t.getNormal());
+            viewDirection.set(t.getNormal().negate());
             if(highCollisions == 3){
                 hasHighCover = true;
             } else {

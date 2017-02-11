@@ -105,11 +105,6 @@ public class MyGameCharacterControl extends BetterCharacterControl
         CameraNode camNode = new CameraNode("CamNode", cam);
         camNode.setControlDir(CameraControl.ControlDirection.SpatialToCamera);
         head.attachChild(camNode);
-        /**
-         * Uncomment for chasecam
-         */
-//        camNode.setLocalTranslation(new Vector3f(0, 5, -5));
-//        camNode.lookAt(head.getLocalTranslation(), Vector3f.UNIT_Y);
     }
     
     protected void rotate(float value){
